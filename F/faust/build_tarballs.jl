@@ -194,12 +194,6 @@ products = [
 
 llvm_versions = [v"11.0.1", v"12.0.1", v"13.0.1"]
 
-sources = Dict(
-    v"11.0.1" => [sources; ],
-    v"12.0.1" => [sources; ],
-    v"13.0.1" => [sources; ],
-)
-
 base_dependencies = [
     Dependency("libmicrohttpd_jll"),
     Dependency("libsndfile_jll"),
@@ -233,7 +227,7 @@ for llvm_version in llvm_versions
         should_build_platform(triplet(augmented_platform)) || continue
         push!(builds, (;
             dependencies,
-            sources=sources[llvm_version],
+            sources=sources,
             platforms=[augmented_platform],
         ))
     end
